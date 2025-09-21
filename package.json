@@ -1,0 +1,25 @@
+{
+  "name": "api-biblioteca",
+  "version": "1.0.0",
+  "description": "API REST para gerenciamento de biblioteca, trabalho final do curso de automação de testes do professor Júlio de Lima.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test-external": "mocha ./tests/REST/external/**/*.test.js --timeout 10000",
+    "test-controller": "mocha ./tests/REST/controller/**/*.test.js --timeout 10000",
+    "test-rest": "mocha ./tests/REST/**/*.test.js --timeout 10000"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^6.0.1",
+    "mocha": "^11.7.2",
+    "sinon": "^21.0.0",
+    "supertest": "^7.1.4"
+  }
+}
