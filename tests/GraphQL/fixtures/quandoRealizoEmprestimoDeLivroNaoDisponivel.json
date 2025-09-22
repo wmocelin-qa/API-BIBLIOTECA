@@ -1,0 +1,27 @@
+{
+  "errors": [
+    {
+      "message": "Livro não encontrado ou não está disponível para empréstimo.",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "borrowBook"
+      ],
+      "extensions": {
+        "code": "BAD_USER_INPUT",
+        "exception": {
+          "stacktrace": [
+            "UserInputError: Livro não encontrado ou não está disponível para empréstimo.",
+            "    at Object.borrowBook (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\graphql\\resolvers.js:81:15)",
+            "    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}

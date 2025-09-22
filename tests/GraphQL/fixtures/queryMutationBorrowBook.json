@@ -1,0 +1,3 @@
+{
+    "query": "mutation Login($bookId: ID!) { borrowBook(bookId: $bookId) { message } }"
+}

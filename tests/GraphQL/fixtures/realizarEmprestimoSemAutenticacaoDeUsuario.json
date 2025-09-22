@@ -1,0 +1,35 @@
+{
+  "errors": [
+    {
+      "message": "Você precisa estar logado para realizar um empréstimo.",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "borrowBook"
+      ],
+      "extensions": {
+        "code": "UNAUTHENTICATED",
+        "exception": {
+          "stacktrace": [
+            "AuthenticationError: Você precisa estar logado para realizar um empréstimo.",
+            "    at Object.borrowBook (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\graphql\\resolvers.js:74:15)",
+            "    at field.resolve (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\apollo-server-core\\dist\\utils\\schemaInstrumentation.js:56:26)",
+            "    at executeField (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\graphql\\execution\\execute.js:500:20)",
+            "    at C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\graphql\\execution\\execute.js:385:22",
+            "    at promiseReduce (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\graphql\\jsutils\\promiseReduce.js:23:9)",
+            "    at executeFieldsSerially (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\graphql\\execution\\execute.js:381:43)",
+            "    at executeOperation (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\graphql\\execution\\execute.js:355:14)",
+            "    at execute (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\graphql\\execution\\execute.js:136:20)",
+            "    at execute (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\apollo-server-core\\dist\\requestPipeline.js:207:48)",
+            "    at processGraphQLRequest (C:\\Users\\Gisele Mocelin\\OneDrive\\Documentos\\PGATS\\Automação de Testes de API\\API-BIBLIOTECA\\node_modules\\apollo-server-core\\dist\\requestPipeline.js:150:34)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
