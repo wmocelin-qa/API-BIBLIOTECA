@@ -13,7 +13,6 @@ const typeDefs = gql`
     book: Book!
     user: User!
     returned: Boolean!
-    message: String
   }
 
   type User {
