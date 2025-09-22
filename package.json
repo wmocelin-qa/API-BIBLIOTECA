@@ -8,7 +8,7 @@
     "start-graphql": "node graphql/server.js",
     "test-external": "mocha ./tests/REST/External/**/*.test.js --timeout 10000",
     "test-controller": "mocha ./tests/REST/Controller/**/*.test.js --timeout 10000",
-    "test-graphql-external": "mocha ./tests/graphql/External/**/*.test.js --timeout 10000",
+    "test-graphql-external": "mocha ./tests/graphql/external/**/*.test.js --timeout 10000",
     "test-rest": "mocha ./tests/REST/**/*.test.js --timeout 10000"
     
   },
