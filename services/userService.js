@@ -23,4 +23,8 @@ function getUserById(id) {
   return users.find(u => u.id === id);
 }
 
-module.exports = { createUser, findUserByUsername, getUserById, users };
+function comparePassword(plainPassword, hashedPassword) {
+  return bcrypt.compareSync(plainPassword, hashedPassword);
+}
+
+module.exports = { createUser, findUserByUsername, getUserById, users, comparePassword };

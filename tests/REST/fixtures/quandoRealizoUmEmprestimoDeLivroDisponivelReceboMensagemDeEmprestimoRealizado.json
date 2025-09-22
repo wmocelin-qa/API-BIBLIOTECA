@@ -1,0 +1,9 @@
+{
+    "message": "Empréstimo realizado",
+        "book": {
+            "id": 1,
+            "title": "O Homem Mais Feliz do Mundo: A Bela Vida de um Sobrevivente de Auschwitz",
+            "author": "Eddie Jaku",
+            "available": false
+        }
+}

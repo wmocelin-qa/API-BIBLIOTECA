@@ -4,8 +4,9 @@ const sinon = require('sinon')
 
 const app = require('../../../app')
 const loanService = require('../../../services/loanService')
+const realizarEmprestimo = require('../fixtures/quandoRealizoUmEmprestimoDeLivroDisponivelReceboMensagemDeEmprestimoRealizado.json')
 
-describe('Realizar Empréstimo', () => {
+describe('Realizar Empréstimo via Controller', () => {
     let token;
 
     describe('POST /api/loans', () => {
@@ -23,15 +24,7 @@ describe('Realizar Empréstimo', () => {
 
         it('Ao tentar realizar empréstimo de um livro disponível recebo status code 201', async () => {
             const loanServiceMock = sinon.stub(loanService, 'createLoan')
-            loanServiceMock.returns({
-                "message": "Empréstimo realizado",
-                "book": {
-                "id": 1,
-                "title": "O Homem Mais Feliz do Mundo: A Bela Vida de um Sobrevivente de Auschwitz",
-                "author": "Eddie Jaku",
-                "available": false
-                }
-            })
+            loanServiceMock.returns(realizarEmprestimo)
 
             const resposta = await request(app)
             .post('/api/loans')
@@ -67,7 +60,7 @@ describe('Realizar Empréstimo', () => {
                 .post('/api/loans')
                 //.set('Authorization', `Bearer ${token}`)
                 .send({
-                    bookId: 44
+                    bookId: 3
             })
 
             expect(resposta.status).to.equal(401)

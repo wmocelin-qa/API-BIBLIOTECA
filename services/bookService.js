@@ -12,7 +12,8 @@ function getAvailableBooks() {
 }
 
 function getBookById(id) {
-  return books.find(b => b.id === id);
+  // Garante que o id seja comparado como número
+  return books.find(b => Number(b.id) === Number(id));
 }
 
 function setBookAvailability(id, available) {
