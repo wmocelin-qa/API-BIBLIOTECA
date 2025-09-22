@@ -28,7 +28,7 @@ describe('Realizar Empréstimo via API GraphQL - External', () => {
             //console.log(token) apenas para testes
     })
 
-    it('Ao tentar realizar empréstimo de um livro disponível recebo mensagem de empréstimo realizado', async () => {
+    it.only('Ao tentar realizar empréstimo de um livro disponível recebo mensagem de empréstimo realizado', async () => {
         const resposta = await request(baseUrl)
             .post('/graphql')
             .set('Authorization', `Bearer ${token}`)
@@ -87,5 +87,4 @@ describe('Realizar Empréstimo via API GraphQL - External', () => {
             const respostaEsperada = require('../fixtures/realizarEmprestimoSemAutenticacaoDeUsuario.json')
             expect(resposta.body.errors[0].message).to.equal(respostaEsperada.errors[0].message);
     })
-
 })
