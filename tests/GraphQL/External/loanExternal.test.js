@@ -25,7 +25,7 @@ describe('Realizar Empréstimo via API GraphQL - External', () => {
             })
 
             token = respostaLogin.body.data.login.token;
-            //console.log(token)
+            //console.log(token) apenas para testes
     })
 
     it('Ao tentar realizar empréstimo de um livro disponível recebo mensagem de empréstimo realizado', async () => {
