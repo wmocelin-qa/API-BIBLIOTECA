@@ -1,14 +1,29 @@
 const books = require('../models/books');
 let bookIdCounter = 1;
 
+// Sistema de locks em memória para evitar race conditions
+const locks = {};
+
+function acquireLock(bookId) {
+  if (locks[bookId]) {
+    return false;
+  }
+  locks[bookId] = true;
+  return true;
+}
+
+function releaseLock(bookId) {
+  delete locks[bookId];
+}
+
 function addBook(title, author) {
-  const book = { id: bookIdCounter++, title, author, available: true };
+  const book = { id: bookIdCounter++, title, author, totalCopies: 1, availableCopies: 1 };
   books.push(book);
   return book;
 }
 
 function getAvailableBooks() {
-  return books.filter(b => b.available);
+  return books.filter(b => b.availableCopies > 0);
 }
 
 function getBookById(id) {
@@ -16,9 +31,44 @@ function getBookById(id) {
   return books.find(b => Number(b.id) === Number(id));
 }
 
-function setBookAvailability(id, available) {
+function decreaseAvailableCopies(id) {
   const book = getBookById(id);
-  if (book) book.available = available;
+  if (book && book.availableCopies > 0) {
+    book.availableCopies--;
+    return true;
+  }
+  return false;
 }
 
-module.exports = { addBook, getAvailableBooks, getBookById, setBookAvailability, books };
+function increaseAvailableCopies(id) {
+  const book = getBookById(id);
+  if (book && book.availableCopies < book.totalCopies) {
+    book.availableCopies++;
+    return true;
+  }
+  return false;
+}
+
+// Mantido para compatibilidade (deprecated)
+function setBookAvailability(id, available) {
+  const book = getBookById(id);
+  if (book) {
+    if (available) {
+      book.availableCopies = book.totalCopies;
+    } else {
+      book.availableCopies = 0;
+    }
+  }
+}
+
+module.exports = { 
+  addBook, 
+  getAvailableBooks, 
+  getBookById, 
+  setBookAvailability,
+  decreaseAvailableCopies,
+  increaseAvailableCopies,
+  acquireLock,
+  releaseLock,
+  books 
+};
