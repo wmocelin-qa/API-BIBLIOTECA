@@ -4,7 +4,7 @@ import { sleep, check } from 'k6';
 
 export const options = {
     vus: 15,
-    duration: "10s",
+    duration: "30s",
     thresholds: {
         http_req_duration: ['p(90)<=55', 'p(95)<=65'],
         http_req_failed: ['rate<0.01']
@@ -30,7 +30,7 @@ export default function() {
     let responseLoans = http.post(
         'http://localhost:3000/api/loans',
         JSON.stringify({
-            bookId: 2
+            bookId: 3
         }),
     {
         headers: {
