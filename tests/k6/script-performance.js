@@ -1,6 +1,10 @@
 import http from 'k6/http';
 import { expect } from "https://jslib.k6.io/k6-testing/0.5.0/index.js";
 import { sleep, check } from 'k6';
+import { getBaseUrl } from './helpers/baseUrl.js';
+import { Trend } from 'k6/metrics';
+
+const postLoanDurationTrend = new Trend('post_loan_duration');
 
 export const options = {
     vus: 15,
@@ -11,9 +15,11 @@ export const options = {
     }
 }
 
+const BASE_URL = getBaseUrl();
+
 export default function() {
     let responseUserLogin = http.post(
-        'http://localhost:3000/api/login',
+        `${BASE_URL}/api/login`,
         JSON.stringify({
             username: "juninho",
             password: "1234"
@@ -28,7 +34,7 @@ export default function() {
     sleep(1);
 
     let responseLoans = http.post(
-        'http://localhost:3000/api/loans',
+        `${BASE_URL}/api/loans`,
         JSON.stringify({
             bookId: 3
         }),
@@ -44,10 +50,12 @@ export default function() {
         'Empréstimo realizado. Status Code 201': (r) => r.status == 201
     })
 
+    postLoanDurationTrend.add(responseLoans.timings.duration);
+
     const loanId = responseLoans.json('loanId');
 
     let responseReturns = http.post(
-        'http://localhost:3000/api/returns',
+        `${BASE_URL}/api/returns`,
         JSON.stringify({
             loanId: loanId
         }),

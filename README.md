@@ -78,5 +78,43 @@ API para gerenciamento de biblioteca, desenvolvida em Node.js. Permite cadastro 
 - Os Types, Queries e Mutations GraphQL foram definidos com base nos dados e métodos utilizados nos testes da API REST.
 - As fixtures dos testes REST foram consideradas para garantir compatibilidade de entrada e saída.
 
----
+## Conceitos empregados neste projeto: 
+
+- Thresholds:
+Implementado no arquivo: tests/k6/script-performance.js linha 8. 
+
+- Checks
+Implementado check para verificação de status code no arquivo tests/k6/script-performance.js nas linhas: 43 e 62. 
+
+- Helpers
+Criei um helper para BASE_URL em tests/k6/helpers/baseUrl.js e utilizei nas linhas 18 para chamada da função, 22, 37 e 56 no arquivo tests/k6/script-performance.js para os endpoints.
+
+- Trends
+Importei na linha 4 do arquivo tests/k6/script-performance.js;
+Criei uma nova Trend neste mesmo arquivo na linha 7;
+E na linha 53 do arquivo utilizei a métrica personalizada postLoanDurationTrend.add(responseLoans.timings.duration); 
+
+- Faker
+
+
+- Variável de Ambiente
+
+
+- Stages
+
+
+- Reaproveitamento de Resposta
+
+
+- Uso de Token de Autenticação
+Uso do token no arquivo tests/k6/script-performance.js linha 38 para autenticação do usuário no empréstimo. 
+Uso do token no arquivo tests/k6/script-performance.js linha 57 para autenticação do usuário na devolução.
+
+- Data-Driven Testing
+
+
+- Groups
+
+
+
 Trabalho final para o curso de automação de testes na camada de API do professor Júlio de Lima.
