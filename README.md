@@ -82,12 +82,15 @@ API para gerenciamento de biblioteca, desenvolvida em Node.js. Permite cadastro 
 
 - Thresholds:
 Implementado no arquivo: tests/k6/script-performance.js linha 8. 
+Implementado no arquivo: tests/k6/script-login.js linha 15. 
 
 - Checks
 Implementado check para verificação de status code no arquivo tests/k6/script-performance.js nas linhas: 43 e 62. 
+Implementado check para verificação de status code no arquivo tests/k6/script-login.js na linha: 37. 
 
 - Helpers
 Criei um helper para BASE_URL em tests/k6/helpers/baseUrl.js e utilizei nas linhas 18 para chamada da função, 22, 37 e 56 no arquivo tests/k6/script-performance.js para os endpoints.
+Usado também no arquivo tests/k6/script-login.js na linha 20 para armazenar em uma variável e utilizada a variável na linha 28.
 
 - Trends
 Importei na linha 4 do arquivo tests/k6/script-performance.js;
@@ -98,10 +101,11 @@ E na linha 53 do arquivo utilizei a métrica personalizada postLoanDurationTrend
 
 
 - Variável de Ambiente
-
+Criei um helper para BASE_URL em tests/k6/helpers/baseUrl.js e utilizei nas linhas 18 para chamada da função, 22, 37 e 56 no arquivo tests/k6/script-performance.js para os endpoints.
+E a execução do k6 é por meio do comando 'k6 run .\tests\k6\script-performance.js --env BASE_URL=http://localhost:3000'
 
 - Stages
-
+Linha 14 a 20 no arquivo de tests/k6/script-performance.js uso do stages. 
 
 - Reaproveitamento de Resposta
 
@@ -111,7 +115,9 @@ Uso do token no arquivo tests/k6/script-performance.js linha 38 para autenticaç
 Uso do token no arquivo tests/k6/script-performance.js linha 57 para autenticação do usuário na devolução.
 
 - Data-Driven Testing
-
+Importação do SharedArray na linha 5 do arquivo tests/k6/script-login.js.
+Nas linhas 7 a 9 eu crio um novo SharedArray que irá retornar o JSON com os objetos (usuários).
+Seguindo no mesmo arquivo nas linhas 23, 24 e 25 eu implemento as variáveis que posteriomente irei utilizar nas linhas 30 e 31 para realizar o login.  
 
 - Groups
 

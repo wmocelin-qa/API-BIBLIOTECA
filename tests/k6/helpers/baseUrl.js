@@ -1,4 +1,4 @@
 export function getBaseUrl() {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = __ENV.BASE_URL || 'http://localhost:3000';
   return baseUrl;
 }

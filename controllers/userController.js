@@ -4,13 +4,19 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SECRET = 'biblioteca_secret';
 
-function register(req, res) {
+async function register(req, res) {
   try {
     const { username, password } = req.body;
-    const user = userService.createUser(username, password);
+    const user = await userService.createUser(username, password);
     res.status(201).json({ id: user.id, username: user.username });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    if (err && err.message === 'Registro em processamento') {
+      return res.status(409).json({ error: 'Registro em processamento, tente novamente' });
+    }
+    if (err && (err.message === 'Usuário já cadastrado' || err.message === 'Usuário e senha não podem ser nulos ou em branco')) {
+      return res.status(400).json({ error: err.message });
+    }
+    res.status(500).json({ error: err.message || 'Erro ao registrar usuário' });
   }
 }
 

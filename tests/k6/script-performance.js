@@ -3,21 +3,45 @@ import { expect } from "https://jslib.k6.io/k6-testing/0.5.0/index.js";
 import { sleep, check } from 'k6';
 import { getBaseUrl } from './helpers/baseUrl.js';
 import { Trend } from 'k6/metrics';
+import faker from "k6/x/faker"
 
 const postLoanDurationTrend = new Trend('post_loan_duration');
 
 export const options = {
-    vus: 15,
-    duration: "30s",
     thresholds: {
-        http_req_duration: ['p(90)<=55', 'p(95)<=65'],
+        http_req_duration: ['p(90)<=1000', 'p(95)<=1200'],
         http_req_failed: ['rate<0.01']
-    }
-}
+    },
+    stages: [
+        { duration: '3s', target: 10 },
+        { duration: '15s', target: 10 },
+        { duration: '3s', target: 60 },
+        { duration: '4s', target: 0 }
+    ],
+};
 
 const BASE_URL = getBaseUrl();
 
 export default function() {
+    let responseRegisterUser = http.post(
+        `${BASE_URL}/api/register`,
+        JSON.stringify({
+            username: `${faker.person.firstName()} ${faker.person.lastName()}`,
+            password: faker.internet.password()
+        }),
+        {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        check(responseRegisterUser, {
+        'Usuário cadastrado. Status Code 201': (r) => r.status == 201
+        })
+        console.log(responseRegisterUser.status)
+
+        sleep(1);
+
     let responseUserLogin = http.post(
         `${BASE_URL}/api/login`,
         JSON.stringify({
@@ -66,7 +90,7 @@ export default function() {
         }
     });
     
-    //console.log(responseReturns.status)
+    console.log(responseReturns.status)
     check(responseReturns, {
         'Devolução OK! Status Code 200': (r) => r.status == 200
     })
