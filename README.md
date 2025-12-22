@@ -81,38 +81,39 @@ API para gerenciamento de biblioteca, desenvolvida em Node.js. Permite cadastro 
 ## Conceitos empregados neste projeto: 
 
 - Thresholds:
-Implementado no arquivo: tests/k6/script-performance.js linha 8. 
+Implementado no arquivo: tests/k6/script-performance.js linha 11. 
 Implementado no arquivo: tests/k6/script-login.js linha 15. 
 
 - Checks
-Implementado check para verificação de status code no arquivo tests/k6/script-performance.js nas linhas: 43 e 62. 
+Implementado check para verificação de status code no arquivo tests/k6/script-performance.js nas linhas: 37, 54, 70 e 85. 
 Implementado check para verificação de status code no arquivo tests/k6/script-login.js na linha: 37. 
 
 - Helpers
-Criei um helper para BASE_URL em tests/k6/helpers/baseUrl.js e utilizei nas linhas 18 para chamada da função, 22, 37 e 56 no arquivo tests/k6/script-performance.js para os endpoints.
+Criei um helper para BASE_URL em tests/k6/helpers/baseUrl.js e utilizei nas linhas 23 para chamada da função, 32, 49, 65, 80 no arquivo tests/k6/script-performance.js para os endpoints.
 Usado também no arquivo tests/k6/script-login.js na linha 20 para armazenar em uma variável e utilizada a variável na linha 28.
 
 - Trends
-Importei na linha 4 do arquivo tests/k6/script-performance.js;
-Criei uma nova Trend neste mesmo arquivo na linha 7;
-E na linha 53 do arquivo utilizei a métrica personalizada postLoanDurationTrend.add(responseLoans.timings.duration); 
+Importei na linha 5 do arquivo tests/k6/script-performance.js;
+Criei uma nova Trend neste mesmo arquivo na linha 8;
+E na linha 74 do arquivo utilizei a métrica personalizada postLoanDurationTrend.add(responseLoans.timings.duration); 
 
 - Faker
-
+Importei a biblioteca na linha 6. 
+Utilizei nas variáveis username, password nas linhas 27 e 28 do arquivo .\tests\k6\script-performance.js.
 
 - Variável de Ambiente
-Criei um helper para BASE_URL em tests/k6/helpers/baseUrl.js e utilizei nas linhas 18 para chamada da função, 22, 37 e 56 no arquivo tests/k6/script-performance.js para os endpoints.
+Criei um helper para BASE_URL em tests/k6/helpers/baseUrl.js e utilizei nas linhas 23 para chamada da função, 32, 49, 65, 80 no arquivo tests/k6/script-performance.js para os endpoints.
 E a execução do k6 é por meio do comando 'k6 run .\tests\k6\script-performance.js --env BASE_URL=http://localhost:3000'
 
 - Stages
-Linha 14 a 20 no arquivo de tests/k6/script-performance.js uso do stages. 
+Linha 15 a 20 no arquivo de tests/k6/script-performance.js uso do stages. 
 
 - Reaproveitamento de Resposta
-
+Linha 67 do arquivo tests/k6/script-performance.js reutilizei o token da resposta para realizar um empréstimo e depois para realizar a devolução na linha: 82. 
 
 - Uso de Token de Autenticação
-Uso do token no arquivo tests/k6/script-performance.js linha 38 para autenticação do usuário no empréstimo. 
-Uso do token no arquivo tests/k6/script-performance.js linha 57 para autenticação do usuário na devolução.
+Uso do token no arquivo tests/k6/script-performance.js linha 67 para autenticação do usuário no empréstimo. 
+Uso do token no arquivo tests/k6/script-performance.js linha 82 para autenticação do usuário na devolução.
 
 - Data-Driven Testing
 Importação do SharedArray na linha 5 do arquivo tests/k6/script-login.js.
@@ -120,7 +121,7 @@ Nas linhas 7 a 9 eu crio um novo SharedArray que irá retornar o JSON com os obj
 Seguindo no mesmo arquivo nas linhas 23, 24 e 25 eu implemento as variáveis que posteriomente irei utilizar nas linhas 30 e 31 para realizar o login.  
 
 - Groups
-
+Importei no arquivo de testes tests/k6/script-performance.js na linha 3 e utilizei os groups nas linhas 30, 47 e 63.
 
 
 Trabalho final para o curso de automação de testes na camada de API do professor Júlio de Lima.
